@@ -93,3 +93,153 @@ body {
 
     font-weight: bold;
 }
+.alert-table-container {
+
+    margin-top: 40px;
+
+    background-color: #1e293b;
+
+    padding: 20px;
+
+    border-radius: 10px;
+
+    border: 1px solid #334155;
+}
+
+.alert-table-container h2 {
+
+    margin-bottom: 20px;
+
+    color: #38bdf8;
+}
+
+.alert-table {
+
+    width: 100%;
+
+    border-collapse: collapse;
+}
+
+.alert-table th,
+.alert-table td {
+
+    padding: 15px;
+
+    text-align: left;
+
+    border-bottom: 1px solid #334155;
+}
+
+.alert-table th {
+
+    color: #38bdf8;
+}
+
+.alert-table tr:hover {
+
+    background-color: #273549;
+}
+.chart-container {
+
+    margin-top: 40px;
+
+    background-color: #1e293b;
+
+    padding: 20px;
+
+    border-radius: 10px;
+
+    border: 1px solid #334155;
+
+    width: fit-content;
+}
+
+.chart-container h2 {
+
+    margin-bottom: 20px;
+
+    color: #38bdf8;
+}
+.traffic-feed-container {
+
+    margin-top: 40px;
+
+    background-color: #1e293b;
+
+    padding: 20px;
+
+    border-radius: 10px;
+
+    border: 1px solid #334155;
+}
+
+.traffic-feed-container h2 {
+
+    margin-bottom: 20px;
+
+    color: #38bdf8;
+}
+
+.traffic-table {
+
+    width: 100%;
+
+    border-collapse: collapse;
+}
+
+.traffic-table th,
+.traffic-table td {
+
+    padding: 15px;
+
+    border-bottom: 1px solid #334155;
+
+    text-align: left;
+}
+
+.traffic-table th {
+
+    color: #38bdf8;
+}
+
+.top-ips-container {
+
+    margin-top: 40px;
+
+    background-color: #1e293b;
+
+    padding: 20px;
+
+    border-radius: 10px;
+
+    border: 1px solid #334155;
+}
+
+.top-ips-container h2 {
+
+    margin-bottom: 20px;
+
+    color: #38bdf8;
+}
+
+.top-ips-table {
+
+    width: 100%;
+
+    border-collapse: collapse;
+}
+
+.top-ips-table th,
+.top-ips-table td {
+
+    padding: 15px;
+
+    border-bottom: 1px solid #334155;
+
+    text-align: left;
+}
+
+.top-ips-table th {
+
+    color: #38bdf8;
+}

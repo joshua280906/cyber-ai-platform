@@ -4,13 +4,32 @@ from datetime import datetime
 from api.traffic import router as traffic_router
 from fastapi import WebSocket
 from websocket.live_stream import connect, disconnect
+from api.stats import router as stats_router
+from fastapi.middleware.cors import CORSMiddleware
+from api.alerts import router as alerts_router
+from api.traffic_feed import router as traffic_feed_router
 
 app = FastAPI(
     title="AI Threat Detection Platform",
     version="1.0.0",
     description="AI-Powered Threat Detection & Security Monitoring Platform"
 )
+# ---------------------------------------------------
+# CORS
+# ---------------------------------------------------
 
+app.add_middleware(
+
+    CORSMiddleware,
+
+    allow_origins=["*"],
+
+    allow_credentials=True,
+
+    allow_methods=["*"],
+
+    allow_headers=["*"],
+)
 # --------------------------------------------------
 # ROOT ROUTE
 # --------------------------------------------------
@@ -47,10 +66,34 @@ app.include_router(
     prefix="/traffic",
     tags=["Traffic"]
 )
+app.include_router(
 
-# --------------------------------------------------
+    stats_router,
+
+    prefix="/stats",
+
+    tags=["Statistics"]
+)
+app.include_router(
+
+    alerts_router,
+
+    prefix="/alerts",
+
+    tags=["Alerts"]
+)
+app.include_router(
+
+    traffic_feed_router,
+
+    prefix="/traffic",
+
+    tags=["Traffic Feed"]
+)
+
+# ---------------------------------------------------
 # LIVE WEBSOCKET
-# --------------------------------------------------
+# ---------------------------------------------------
 
 @app.websocket("/ws/live")
 
