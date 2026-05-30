@@ -243,3 +243,23 @@ body {
 
     color: #38bdf8;
 }
+
+.map-container {
+
+    margin-top: 40px;
+
+    background-color: #1e293b;
+
+    padding: 20px;
+
+    border-radius: 10px;
+
+    border: 1px solid #334155;
+}
+
+.map-container h2 {
+
+    margin-bottom: 20px;
+
+    color: #38bdf8;
+}

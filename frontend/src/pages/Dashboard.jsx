@@ -12,6 +12,8 @@ import TrafficFeed from "../components/TrafficFeed"
 
 import TopIPs from "../components/TopIPs"
 
+import ThreatMap from "../components/ThreatMap"
+
 function Dashboard() {
 
   const [packetCount, setPacketCount] = useState(0)
@@ -142,6 +144,8 @@ function Dashboard() {
           <TrafficFeed />
 
           <TopIPs />
+
+          <ThreatMap />
 
         </div>
 

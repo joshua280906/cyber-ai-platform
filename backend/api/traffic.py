@@ -1,6 +1,7 @@
 from fastapi import APIRouter
 
 from database.connection import SessionLocal
+
 from database.crud import save_packet
 
 from detection.threat_detector import detect_threat
@@ -12,6 +13,8 @@ from websocket.manager import broadcast
 from ai.anomaly_detector import detect_anomaly
 
 from ai.threat_scorer import calculate_threat_score
+
+from threat_intel.geoip_lookup import lookup_ip
 
 router = APIRouter()
 
@@ -70,6 +73,22 @@ async def ingest_packet(packet: dict):
         )
 
         # --------------------------------------------
+        # GEOIP THREAT INTELLIGENCE
+        # --------------------------------------------
+
+        geo_data = lookup_ip(
+
+            packet["src_ip"]
+        )
+
+        print(
+
+            f"[GEOIP] {packet['src_ip']} → "
+            f"{geo_data['country']}, "
+            f"{geo_data['city']}"
+        )
+
+        # --------------------------------------------
         # SAVE + BROADCAST ALERTS
         # --------------------------------------------
 
@@ -100,7 +119,9 @@ async def ingest_packet(packet: dict):
 
                 "message": alert,
 
-                "threat_score": threat_score
+                "threat_score": threat_score,
+
+                "geoip": geo_data
             })
 
         # --------------------------------------------
