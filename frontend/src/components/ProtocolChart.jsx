@@ -6,11 +6,20 @@ import {
   Pie,
   Cell,
   Tooltip,
-  Legend
+  Legend,
+  ResponsiveContainer
 
 } from "recharts"
 
 import API from "../services/api"
+
+const COLORS = [
+
+  "#38bdf8",
+  "#f59e0b",
+  "#22c55e",
+  "#ef4444"
+]
 
 function ProtocolChart() {
 
@@ -18,23 +27,11 @@ function ProtocolChart() {
 
   useEffect(() => {
 
-  loadProtocolData()
+    loadProtocols()
 
-  const interval = setInterval(() => {
+  }, [])
 
-    loadProtocolData()
-
-  }, 5000)
-
-  return () => clearInterval(interval)
-
-}, [])
-
-  // --------------------------------------------------
-  // LOAD PROTOCOL DATA
-  // --------------------------------------------------
-
-  async function loadProtocolData() {
+  async function loadProtocols() {
 
     try {
 
@@ -51,56 +48,64 @@ function ProtocolChart() {
     }
   }
 
-  const COLORS = [
-
-    "#38bdf8",
-    "#ef4444",
-    "#22c55e",
-    "#f59e0b"
-  ]
-
   return (
 
-    <div className="chart-container">
+    <div>
 
       <h2>Protocol Distribution</h2>
 
-      <PieChart width={400} height={300}>
+      <div
+        style={{
+          width: "100%",
+          height: "350px",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center"
+        }}
+      >
 
-        <Pie
+        <ResponsiveContainer width="100%" height="100%">
 
-          data={data}
+          <PieChart>
 
-          dataKey="count"
+            <Pie
 
-          nameKey="protocol"
+              data={data}
 
-          cx="50%"
+              dataKey="count"
 
-          cy="50%"
+              nameKey="protocol"
 
-          outerRadius={100}
+              cx="50%"
 
-          label
-        >
+              cy="50%"
 
-          {data.map((entry, index) => (
+              outerRadius={100}
 
-            <Cell
+              label
+            >
 
-              key={index}
+              {data.map((entry, index) => (
 
-              fill={COLORS[index % COLORS.length]}
-            />
-          ))}
+                <Cell
 
-        </Pie>
+                  key={`cell-${index}`}
 
-        <Tooltip />
+                  fill={COLORS[index % COLORS.length]}
+                />
+              ))}
 
-        <Legend />
+            </Pie>
 
-      </PieChart>
+            <Tooltip />
+
+            <Legend />
+
+          </PieChart>
+
+        </ResponsiveContainer>
+
+      </div>
 
     </div>
   )

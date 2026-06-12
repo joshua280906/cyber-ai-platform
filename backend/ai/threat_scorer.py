@@ -2,7 +2,15 @@
 # AI THREAT SCORING ENGINE
 # ---------------------------------------------------
 
-def calculate_threat_score(packet, anomaly_detected):
+def calculate_threat_score(
+
+    packet,
+
+    anomaly_detected,
+
+    blacklisted=False
+
+):
 
     score = 0
 
@@ -45,6 +53,14 @@ def calculate_threat_score(packet, anomaly_detected):
     if anomaly_detected:
 
         score += 40
+
+    # --------------------------------------------
+    # THREAT REPUTATION BONUS
+    # --------------------------------------------
+
+    if blacklisted:
+
+        score += 50
 
     # --------------------------------------------
     # LIMIT SCORE

@@ -6,6 +6,35 @@ import requests
 
 def lookup_ip(ip):
 
+    # --------------------------------------------
+    # PRIVATE / LOCAL IP FILTERING
+    # --------------------------------------------
+
+    private_prefixes = (
+
+        "10.",
+        "192.168.",
+        "172.",
+        "127."
+    )
+
+    if ip.startswith(private_prefixes):
+
+        return {
+
+            "country": "Private Network",
+
+            "city": "Local",
+
+            "lat": 0,
+
+            "lon": 0
+        }
+
+    # --------------------------------------------
+    # PUBLIC IP LOOKUP
+    # --------------------------------------------
+
     try:
 
         response = requests.get(

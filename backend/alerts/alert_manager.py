@@ -9,9 +9,15 @@ from database.models import Alert
 def save_alert(
 
     db,
+
     src_ip,
+
     alert_type,
+
     severity,
+
+    country,
+
     description
 ):
 
@@ -24,6 +30,8 @@ def save_alert(
         alert_type=alert_type,
 
         severity=severity,
+        
+        country=country,
 
         description=description
     )

@@ -8,6 +8,8 @@ from api.stats import router as stats_router
 from fastapi.middleware.cors import CORSMiddleware
 from api.alerts import router as alerts_router
 from api.traffic_feed import router as traffic_feed_router
+from api.threat_intel import router as threat_intel_router
+from api.timeline import router as timeline_router
 
 app = FastAPI(
     title="AI Threat Detection Platform",
@@ -89,6 +91,22 @@ app.include_router(
     prefix="/traffic",
 
     tags=["Traffic Feed"]
+)
+app.include_router(
+
+    threat_intel_router,
+
+    prefix="/threat-intel",
+
+    tags=["Threat Intel"]
+)
+app.include_router(
+
+    timeline_router,
+
+    prefix="/analytics",
+
+    tags=["Analytics"]
 )
 
 # ---------------------------------------------------
